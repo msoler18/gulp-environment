@@ -5,13 +5,32 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
   GulpSSH = require('gulp-ssh'),
-  fs = require('fs');
+  fs = require('fs'),
+  sass = require('gulp-sass');
 
 /*
-* Config minify task
+* Config sass watcher
+*/
+
+sass.compiler = require('node-sass');
+ 
+gulp.task('sass', function () {
+  return gulp.src('./assets/sass/*.sass')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest('./assets/css'));
+});
+ 
+gulp.task('sass:watch', function () {
+  gulp.watch('./assets/sass/*.sass', ['sass']);
+});
+
+
+
+/*
+* Config minify task  
 */
 gulp.task('minify', function () {
-  gulp.src('js/source/*.js')
+  gulp.src('./assets/js/source/*.js')
   .pipe(concat('all.min.js'))
   .pipe(uglify())
   .pipe(gulp.dest('js/build/'))
@@ -21,27 +40,6 @@ gulp.task('minify', function () {
 * Config deploy task
 */
 
-var config = {
-  host: '162.144.202.98',
-  port: 22,
-  username: 'root',
-  password:'f>ua9NRs8j>',
-  privateKey: fs.readFileSync('/Users/Miguel Soler/.ssh/id_rsa')
-}
 
-var gulpSSH = new GulpSSH({
-  ignoreErrors: false,
-  sshConfig: config
-})
  
-gulp.task('testcon', function () {
-  return gulpSSH
-    .exec(['uptime', 'ls -a', 'pwd'], {filePath: 'commands.log'})
-    .pipe(gulp.dest('logs'))
-})
- 
-gulp.task('gradideploy', function () {
-  return gulp
-    .src(['./**/*.js', './**/*.php','!**/node_modules/**'])
-    .pipe(gulpSSH.dest('/home/gradites/public_html/adrian/'))
-})  
+
