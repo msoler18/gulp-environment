@@ -1,0 +1,25 @@
+{
+  "name": "gradi-gulp",
+  "version": "1.0.0",
+  "description": "Gulp test Gradiweb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/gradiweb/test-gulp.git"
+  },
+  "author": "msoler18",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/gradiweb/test-gulp/issues"
+  },
+  "homepage": "https://gitlab.com/gradiweb/test-gulp#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-ssh": "^0.7.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}
