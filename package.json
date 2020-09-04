@@ -22,6 +22,6 @@
     "gulp-sass": "^4.0.2",
     "gulp-ssh": "^0.7.0",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.13.0"
+    "node-sass": "^4.13.1"
   }
 }
